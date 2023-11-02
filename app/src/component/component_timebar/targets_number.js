@@ -1,0 +1,1 @@
+const myArray =[177, 106, 203, 125, 196]; export default myArray;

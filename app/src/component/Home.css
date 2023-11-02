@@ -1,0 +1,213 @@
+.title19{
+    padding: 0px 0px 0px 0px
+}
+
+.title20{
+  padding: 0px 17px 0px 0px;
+
+  
+}
+
+.title21{
+    padding: 50px 17px 50px 3px
+}
+
+.title22{
+  padding: 0px 17px 0px 3px;
+  /*color: rgb(255, 255, 255);*/
+  position: relative; /* ポジションを設定 */
+  top: 10px; /* 上方向に移動する値を設定（必要に応じて調整） */
+  
+}
+
+.title24{
+  padding: 0px 17px 0px 3px;
+  /*color: rgb(255, 255, 255);*/
+  
+  
+}
+
+.title25{
+  padding: 0px 17px 0px 3px;
+  /*color: rgb(255, 255, 255);*/
+  position: relative; /* ポジションを設定 */
+  top: 20px; /* 上方向に移動する値を設定（必要に応じて調整） */
+  
+}
+
+.title26{
+  padding: 0px 17px 0px 3px;
+  /*color: rgb(255, 255, 255);*/
+  position: relative; /* ポジションを設定 */
+  top: 30px; /* 上方向に移動する値を設定（必要に応じて調整） */
+  
+}
+
+.title27{
+  padding: 0px 0px 0px 0px;
+
+}
+
+
+.title28{
+  padding: 0px 17px 0px 20px;
+ 
+}
+
+
+.title29{
+  padding: 0px 0px 0px 0px;
+  
+}
+
+
+.white-title21{
+  padding: 0px 17px 0px 3px;
+  
+  
+}
+
+.white-title22{
+  padding: 0px 17px 0px 3px;
+  /*color: rgb(255, 255, 255);*/
+  position: relative; /* ポジションを設定 */
+  top: -60px; /* 上方向に移動する値を設定（必要に応じて調整） */
+  
+}
+
+.white-title31{
+  padding: 0px 8px 0px 0px;
+
+ 
+}
+
+
+
+.title30{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0px 0px 0px 6px
+}
+.title31{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  
+}
+
+.title32{
+  padding: 0px 0px 0px 20px;
+  
+}
+
+.title33{
+
+  position: relative; /* ポジションを設定 */
+  top: 5px; /* 上方向に移動する値を設定（必要に応じて調整） */
+  
+}
+
+.title34{
+  padding: 0px 0px 0px 15px;
+  
+}
+
+.title41{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0px 6px 0px 6px
+}
+
+.title51{
+  padding: 0px 0px 0px 0px
+}
+
+
+.red-square {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(220, 0, 0);
+    padding: 0px 0px 0px 20px
+  }
+
+.blue-square {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(0, 0, 168);
+    padding: 0px 0px 0px 20px
+  }
+
+.green-square {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(0, 168, 0);
+    padding: 0px 0px 0px 20px
+  }
+
+.yellow-square {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(240, 240, 0);
+    padding: 0px 0px 0px 20px
+  }
+
+.orange-square {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(230, 155, 0);
+    padding: 0px 0px 0px 20px
+  }
+
+.lightblue-square {
+    width: 10px;
+    height: 10px;
+    background-color: lightblue;
+    padding: 0px 0px 0px 20px
+  }
+
+  .scrollable-list {
+    max-height: 570px; /* リストの最大高さを設定 */
+    overflow-y: auto; /* リストが枠を超えた場合にスクロールさせる */
+    /*background-color: rgb(85, 85, 88); */
+    border: 1px solid #faf7f7;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .scrollable-list > div {
+    margin-bottom: 5px; /* リストアイテム間の余白を設定 */
+  }
+  
+  .scrollable-list > div:last-child {
+    margin-bottom: 0; /* 最後のリストアイテムには余白を付けない */
+  }
+  
+
+  .scrollable-list1 {
+    max-height: 100px; /* リストの最大高さを設定 */
+    overflow-y: auto; /* リストが枠を超えた場合にスクロールさせる */
+    /*background-color: rgb(85, 85, 88); */
+    border: 1px solid #faf7f7;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .scrollable-list1 > div {
+    margin-bottom: 5px; /* リストアイテム間の余白を設定 */
+  }
+  
+  .scrollable-list1 > div:last-child {
+    margin-bottom: 0; /* 最後のリストアイテムには余白を付けない */
+  }
+  

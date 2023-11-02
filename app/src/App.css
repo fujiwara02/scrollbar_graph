@@ -1,0 +1,344 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Home{
+  text-align: center;
+}
+
+.ToHomeLogo button{
+  padding: 0;
+  border: none;
+  background-color: rgba(255,255,255,0.5);;
+  position: fixed;
+  top: 0px;
+  left: 20px;
+}
+
+
+.LearnButton button {
+  background: #ff7f50;
+  border-radius: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 80%;
+  height: 3.2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  max-width: 260px;
+  padding: 10px 25px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 1000;
+}
+.LearnButton button:hover {
+  background: #313131;
+  color: #FFF;
+}
+.LearnButton button:after {
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #313131;
+  border-right: 3px solid #313131;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.LearnButton button:after {
+  border-color: #FFF;
+}
+
+.ExamButton button {
+  background: #eee;
+  border-radius: 50px;
+  position: absolute;
+  right: 0;
+  bottom: 35%;
+  left: 0;
+  width: 80%;
+  height: 3.2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  max-width: 260px;
+  padding: 10px 25px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+}
+.ExamButton button:hover {
+  background: #313131;
+  color: #FFF;
+}
+.ExamButton button:after {
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #313131;
+  border-right: 3px solid #313131;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.ExamButton p:hover:after {
+  border-color: #FFF;
+}
+
+.Learn {
+  text-align: center;
+}
+
+.learnContent button {
+  background: #eee;
+  border-radius: 50px;
+  position:fixed;
+  left:50px;
+  bottom:50px;
+  transition:1s;
+  opacity:0.7;
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+  margin: 0 auto;
+  max-width: 260px;
+  padding: 10px 25px;
+  color: #000;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+}
+.learnContent button:hover {
+  background: #313131;
+  color: #FFF;
+}
+.learnContent button:after {
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #313131;
+  border-right: 3px solid #313131;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.learnContent p:hover:after {
+  border-color: #FFF;
+}
+
+.checkAnswer button {
+  background-image: url('../public/car_sedan.png');
+  position:fixed;
+  right:50px;
+  bottom:50px;
+  transition:1s;
+  opacity:0.7;
+  border-radius: 50px;
+  display: inline-block;
+  justify-content: space-around;
+  align-items: end;
+  margin: 0 auto;
+  max-width: 260px;
+  padding: 10px 25px;
+  color: #000;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+}
+.checkAnswer button:hover {
+  background: #313131;
+  color: #FFF;
+}
+.checkAnswer button:after {
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #313131;
+  border-right: 3px solid #313131;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.checkAnswer p:hover:after {
+  border-color: #FFF;
+}
+
+.reButtonParent button{
+  background: #eee;
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 260px;
+  padding: 10px 25px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 1000;
+  width: 50%;
+  height: 3.2rem;
+}
+.reButton button{
+  position: absolute;
+  left: 41%;
+  top: 80%;
+}
+.reButton button:hover {
+  background: #F00;
+  color: #FFF;
+}
+.reButton button:after {
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #313131;
+  border-right: 3px solid #313131;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.reButton p:hover:after {
+  border-color: #FFF;
+}
+
+.reButtonStop button{
+  background: #F00;
+  position: absolute;
+  left: 41%;
+  top: 80%;
+}
+.reButtonStop button:hover {
+  background: #FFF;
+  color: #FFF;
+}
+.reButtonStop button:after {
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #313131;
+  border-right: 3px solid #313131;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.reButtonStop p:hover:after {
+  border-color: #FFF;
+}
+
+.ContentButton button {
+  background: #eee;
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 260px;
+  padding: 10px 25px;
+  color: #313131;
+}
+
+.ContentButton button:hover {
+  background: #313131;
+  color: #FFF;
+}
+.ContentButton button:after {
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #313131;
+  border-right: 3px solid #313131;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.ContentButton p:hover:after {
+  border-color: #FFF;
+}
+
+.ansVideo video {
+  width: 500px;
+  height: inherit;
+  position: absolute;
+  left: 10%;
+  top: 30%;
+}
+.ansVideo p {
+  font-size: 24px;
+}
+.videosShow {
+  display: flex;
+}
+
+.yourVideo video {
+  width: 500px;
+  height: inherit;
+  position: absolute;
+  right: 10%;
+  top: 30%;
+}
+.yourVideo p {
+  font-size: 24px;
+}
+.result_answser_correct {
+  color: #ff0000;
+  font-size: 48px;
+}
+.result_answser_incorrect {
+  color: #0000ff;
+  font-size: 48px;
+}
