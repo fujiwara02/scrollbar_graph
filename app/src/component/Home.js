@@ -10,6 +10,13 @@ import targets_word from './targets_word.js';
 
 import image from '../images/image.jpg';
 
+import myArray0 from './outputs0.js';
+import myArray1 from './outputs1.js'; 
+import myArray2 from './outputs2.js'; 
+import myArray3 from './outputs3.js'; 
+import myArray4 from './outputs4.js'; 
+import myArray5 from './outputs_allzero.js'; 
+
 
 
 const App = () => {
@@ -24,6 +31,29 @@ const App = () => {
   const [y_second, setY_second] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
+  const num = Math.floor((myArray0.length) *  x_second / videoDuration);
+  const convertedNum = parseFloat(myArray0[num]); // 指数表記の数値を通常の数値に変換
+  const roundedNum = convertedNum.toFixed(3); // 3桁で四捨五入
+
+  const num1 = Math.floor((myArray1.length) *  x_second / videoDuration);
+  const convertedNum1 = parseFloat(myArray1[num1]); // 指数表記の数値を通常の数値に変換
+  const roundedNum1 = convertedNum1.toFixed(3); // 3桁で四捨五入
+
+  const num2 = Math.floor((myArray2.length) *  x_second / videoDuration);
+  const convertedNum2 = parseFloat(myArray2[num2]); // 指数表記の数値を通常の数値に変換
+  const roundedNum2 = convertedNum2.toFixed(3); // 3桁で四捨五入
+
+  const num3 = Math.floor((myArray3.length) *  x_second / videoDuration);
+  const convertedNum3 = parseFloat(myArray3[num3]); // 指数表記の数値を通常の数値に変換
+  const roundedNum3 = convertedNum3.toFixed(3); // 3桁で四捨五入
+
+  const num4 = Math.floor((myArray4.length) *  x_second / videoDuration);
+  const convertedNum4 = parseFloat(myArray4[num4]); // 指数表記の数値を通常の数値に変換
+  const roundedNum4 = convertedNum4.toFixed(3); // 3桁で四捨五入
+
+  
+
+  //const roundedNumber = myArray0[num].toFixed(0);
 
   const handleDuration = (duration) => {
     setVideoDuration(duration);
@@ -110,8 +140,8 @@ const App = () => {
           url={playground}
           playing={isPlaying} // isPlayingを使用してビデオの再生を制御
           controls={true}
-          width="807px"
-          height="595px"
+          width="780px"
+          height="575px"
           playsinline
           playbackRate={playbackRate}
           onDuration={handleDuration}
@@ -190,9 +220,19 @@ const App = () => {
       />
 
       <div >
-       
-      <p className="title22">Current Time: {currentTime.toFixed(3)} seconds</p>
+  
+      <a className="title33">バー間秒数: {y_second ? 
+            (y_second - x_second).toFixed(3) + ' 秒' 
+            : (videoDuration - x_second).toFixed(3) + ' 秒'}</a>
+
+      {/*<a className="title22">現在の時間: {currentTime.toFixed(3)} seconds</a>*/}<br></br>
+
       
+      <a className="green-square"></a><a className="white-title21">{targets_word[0]} : {roundedNum}</a>
+      <a className="blue-square"></a><a className="white-title21">{targets_word[1]} : {roundedNum1}</a><br></br>
+      <a className="yellow-square"></a><a className="white-title21">{targets_word[2]} : {roundedNum2}</a>
+      <a className="orange-square"></a><a className="white-title21">{targets_word[3]} : {roundedNum3}</a><br></br>
+      <a className="red-square"></a><a className="white-title21">{targets_word[4]} : {roundedNum4}</a>
       
       </div> 
 

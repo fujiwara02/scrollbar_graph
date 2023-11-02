@@ -13,10 +13,8 @@
 }
 
 .title22{
-  padding: 0px 17px 0px 3px;
-  /*color: rgb(255, 255, 255);*/
-  position: relative; /* ポジションを設定 */
-  top: 10px; /* 上方向に移動する値を設定（必要に応じて調整） */
+  padding: 0px 0px 0px 0px;
+  
   
 }
 
@@ -100,18 +98,31 @@
 
 .title32{
   padding: 0px 0px 0px 20px;
+  top: 2px; /* 上方向に移動する値を設定（必要に応じて調整） */
   
 }
 
 .title33{
 
-  position: relative; /* ポジションを設定 */
-  top: 5px; /* 上方向に移動する値を設定（必要に応じて調整） */
+  padding: 0px 25px 0px 0px;
   
 }
 
 .title34{
   padding: 0px 0px 0px 15px;
+  top: 2px; /* 上方向に移動する値を設定（必要に応じて調整） */
+  
+}
+
+.title35{
+  padding: 0px 15px 0px 15px;
+  top: 2px; /* 上方向に移動する値を設定（必要に応じて調整） */
+  
+}
+
+.title36{
+  position: relative; /* ポジションを設定 */
+  top: 3px; /* 上方向に移動する値を設定（必要に応じて調整） */
   
 }
 
@@ -171,7 +182,7 @@
   }
 
   .scrollable-list {
-    max-height: 570px; /* リストの最大高さを設定 */
+    max-height: 550px; /* リストの最大高さを設定 */
     overflow-y: auto; /* リストが枠を超えた場合にスクロールさせる */
     /*background-color: rgb(85, 85, 88); */
     border: 1px solid #faf7f7;

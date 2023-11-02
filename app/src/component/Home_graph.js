@@ -29,7 +29,8 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
     let animationActive = false;// アニメーションを制御するフラグ
     let y = 0;
     let z = 0;
-    let start1 = 0;
+    let start1 = 0; //アニメーション時にstartを保存
+    let screenStart = 0; //一時停止時にリセットされない
 
     videoElement.onloadedmetadata = () => {
       console.log('動画の秒数:', videoElement.duration);
@@ -502,14 +503,16 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
           rangeValue = Math.min(progressPercentage, 1);
         
           const newValue = xAxis.positionToValue( y / 729.28125 + rangeValue * (z - y) / 729.28125);//加算(start位置)、掛け算(長さ)
-        
+          range.set("value", newValue);
+          
+          start = start1 + ((end - start1) * rangeValue);
+
           if(rangeValue == 1){
             onMovieStop();
-          }
+            range.set("value", xAxis.positionToValue(screenStart));
+            console.log(xAxis.positionToValue(screenStart));
 
-          
-            range2.set("value", newValue);
-            start = start1 + ((end - start1) * rangeValue);
+          }
           
 
           if (progressPercentage < 1 && animationActive) {
@@ -532,7 +535,8 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
 
       start = 0;
       end = 1;
-      start1 = start;
+      start1 = start; //アニメーション
+      screenStart = start; //固定
       
       handleButtonClick4();
       
@@ -542,12 +546,13 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
     function handleButtonClick1() {
 
 
-      y = resizeButton.x();
+      y = resizeButton.x(); 
       z = resizeButton2.x();
 
       start = y / 729.28125
       end = z / 729.28125;
-      start1 = start;
+      start1 = start; //アニメーション
+      screenStart = start; //固定
 
       handleButtonClick4();   
     }
@@ -651,29 +656,18 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
       <a className="title34">
       <a id="button-container1"></a></a>
 
-      <a className="title34">
+      <a className="title35">
       <a id="button-container2"></a></a>
+
+      <a className="title36">
+      0.25倍 <a id="scrollbar-container"></a> 1.00倍</a>
 
 
     <div className="title31">
 
       {/* AmChartsのグラフ */}
       <div id="chartdiv" style={{ width: '800px', height: '160px' }}></div>
-      
-      <div className="scrollable-list">
-
-      0.25倍 <a id="scrollbar-container"></a> 1.00倍
-
-      
-      <br></br>
-
-      <a className="title33">
-      <a className="title29">バー間秒数: {y_second ? 
-            (y_second - x_second).toFixed(3) + ' 秒' 
-            : (videoDuration - x_second).toFixed(3) + ' 秒'}</a>
-      </a>
-     
-      </div>
+    
     </div>
   </div>
   );
