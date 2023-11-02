@@ -12,12 +12,12 @@ import myArray4 from './outputs4.js';
 import myArray5 from './outputs_allzero.js'; 
 
 //onXDataChange, onYDataChange, onCDataChange(graph➡home)
-const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onMovieStop}) => {
+const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onSDataChange, onMovieStop}) => {
   
   const [videoDuration, setVideoDuration] = useState(0);
   const [x_second, setX_second] = useState(0);
   const [y_second, setY_second] = useState(0);
-
+  const [z_second, setZ_second] = useState(0);
 
 
   useEffect(() => {
@@ -123,13 +123,6 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
     }]);
 
 
-   
-
-    
-     
-    
-
-
     //x軸をグラフに追加している
     const xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
       baseInterval: {
@@ -159,7 +152,9 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
       yAxis: yAxis, //使用するy軸を指定(値軸)
       valueYField: "value", //valueのデータをx軸にplot
       valueXField: "date", //dataのデータをy軸にplot
-      stroke: ""
+      stroke: "",
+      fill: am5.color(0x000000) // 赤色に塗りつぶすための設定
+
     }));
     
     // myArrayからのall_one(start)データを代入している
@@ -172,8 +167,9 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
 
     //塗りつぶすのに必要
     series.fills.template.setAll({
-      fillOpacity: 0.17,
-      visible: true
+      fillOpacity: 0.2,
+      visible: true,
+      
     });
 
 
@@ -186,7 +182,8 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
       yAxis: yAxis, //使用するy軸を指定(値軸)
       valueYField: "value", //valueのデータをx軸にplot
       valueXField: "date", //dataのデータをy軸にplot
-      stroke: ""
+      stroke: "",
+      fill: am5.color(0x000000) // 赤色に塗りつぶすための設定
     }));
     
     // myArrayからのall_one(end)データを代入している
@@ -199,8 +196,35 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
 
     //塗りつぶすのに必要
     series6.fills.template.setAll({
-      fillOpacity: 0.17,
+      fillOpacity: 0.2,
       visible: true
+    });
+
+
+
+    // all_one(end)データを追加
+    const series7 = chart.series.push(am5xy.LineSeries.new(root, {
+      name: "Series", //名前指定
+      xAxis: xAxis, //使用するX軸を指定（日付軸）
+      yAxis: yAxis, //使用するy軸を指定(値軸)
+      valueYField: "value", //valueのデータをx軸にplot
+      valueXField: "date", //dataのデータをy軸にplot
+      stroke: "",
+      fill: am5.color(0x000000) // 赤色に塗りつぶすための設定
+    }));
+    
+    // myArrayからのall_one(end)データを代入している
+    const data7 = myArray.map((value, index) => ({
+      date:  index * 8400 , //50フレーム50秒(1000)　//50フレーム420秒(8400)
+      value: value,
+      
+    }));
+    series7.data.setAll(data7);
+
+    //塗りつぶすのに必要
+    series7.fills.template.setAll({
+      fillOpacity: 0.2,
+      visible: false
     });
 
 
@@ -335,7 +359,7 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
 
     //片方だけ塗られている状態にする
     seriesRange.fills.template.setAll({
-      visible: true,
+      visible: false,
       opacity: 0.35
     });
 
@@ -346,10 +370,20 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
 
     //片方だけ塗られている状態にする
     seriesRange2.fills.template.setAll({
-      visible: true,
+      visible: false,
       opacity: 0.35
     });
 
+
+    //定義(start)
+    const seriesRangeDataItem3 = xAxis.makeDataItem({});
+    const seriesRange3 = series7.createAxisRange(seriesRangeDataItem3);
+
+    //片方だけ塗られている状態にする
+    seriesRange3.fills.template.setAll({
+      visible: false,
+      opacity: 0.35
+    });
 
 
     //最初から塗られている状態にする
@@ -366,6 +400,7 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
     //タイムスクロールバーを追加
     const range = xAxis.createAxisRange(xAxis.makeDataItem({}));
     const range2 = xAxis.createAxisRange(xAxis.makeDataItem({}));
+    const range3 = xAxis.createAxisRange(xAxis.makeDataItem({}));
   
     //range.set("value", 1700005200000);
     range.get("grid").setAll({
@@ -378,6 +413,12 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
       strokeOpacity: 1, //線の不透明度
       stroke: "rgba(255, 255, 255, 1)", //タイムスクロールバーの色を指定
       strokeWidth:2
+    });
+
+    range3.get("grid").setAll({
+      strokeOpacity: 1, //線の不透明度
+      stroke: "rgba(255, 255, 255, 1)", //タイムスクロールバーの色を指定
+      strokeWidth:1.4
     });
 
 
@@ -400,8 +441,16 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
       themeTags: ["resize", "horizontal"],
       icon: am5.Graphics.new(root, {
         themeTags: ["icon"],
-        path: "M 10 10 L 30 40 L 50 10 Z" // 三角形のパス
+        path: '../images/image.jpg'
       })
+    });
+
+    const resizeButton3 = am5.Button.new(root, {
+      themeTags: ["resize", "horizontal"],
+      width: 20,
+      height: 20,
+      visible: true,
+      
     });
 
  
@@ -416,6 +465,12 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
 
     //タイムスクロールバーをy軸の範囲に固定
     resizeButton2.adapters.add("y", function () {
+
+      return 0;
+    });
+
+    //タイムスクロールバーをy軸の範囲に固定
+    resizeButton3.adapters.add("y", function () {
 
       return 0;
     });
@@ -439,17 +494,30 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
 
       return Math.max(0, Math.min(chart.plotContainer.width(), x));
     });
+
+    //タイムスクロールバーをx軸の範囲に固定(バーを動かすとき実行される関数)
+    resizeButton3.adapters.add("x", function (x) {
+
+      //バーの初期位置を変更する
+      if (!resizeButton.isMiddleRun) {
+        const position = xAxis.positionToValue(0.5);
+        range3.set("value", position);
+      }
+
+      return Math.max(0, Math.min(chart.plotContainer.width(), x));
+    });
+
     resizeButton.isFirstRun = false; // 右バーの初期位置
 
     resizeButton.isAnimation = true; // アニメーションを停止
 
-    console.log("Animation")
+
 
    
    
 
     // タイムスクロールバーを移動させるための関数
-    resizeButton.events.on("dragged", function () {
+    resizeButton.events.on("dragged", function () { //左のバー
 
       //グラフのx座標
       const x = resizeButton.x(); 
@@ -485,50 +553,51 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
     function handleButtonClick4() {
 
       resizeButton.isFirstRun = true;
-        animationActive = true; // アニメーションを制御するフラグ
+      resizeButton.isMiddleRun = true;
 
-        let rangeValue = 0;
-        let animationStart; 
-        let animationDuration = ((long * 1000) * (z - y)) / (729.28125 * (scrollValue / 100)); // 動画時間 * スライド間計算 / 倍速
+      animationActive = true; // アニメーションを制御するフラグ
+
+      let rangeValue = 0;
+      let animationStart; 
+      let animationDuration = ((long * 1000) * (z - y)) / (729.28125 * (scrollValue / 100)); // 動画時間 * スライド間計算 / 倍速
         
 
-        function animateRangeExpansion(timestamp) {
-          if (!animationStart) {
-            animationStart = timestamp;
-          }
+      function animateRangeExpansion(timestamp) {
+        if (!animationStart) {
+          animationStart = timestamp;
+        }
 
-          const progress = timestamp - animationStart;
-          const progressPercentage = Math.min(progress / animationDuration, 1);
+        const progress = timestamp - animationStart;
+        const progressPercentage = Math.min(progress / animationDuration, 1);
 
-          rangeValue = Math.min(progressPercentage, 1);
+        rangeValue = Math.min(progressPercentage, 1);
         
-          const newValue = xAxis.positionToValue( y / 729.28125 + rangeValue * (z - y) / 729.28125);//加算(start位置)、掛け算(長さ)
-          range.set("value", newValue);
+        const newValue = xAxis.positionToValue( y / 729.28125 + rangeValue * (z - y) / 729.28125);//加算(start位置)、掛け算(長さ)
+        range3.set("value", newValue);
           
-          start = start1 + ((end - start1) * rangeValue);
+        start = start1 + ((end - start1) * rangeValue);
 
-          if(rangeValue == 1){
-            onMovieStop();
-            range.set("value", xAxis.positionToValue(screenStart));
-            console.log(xAxis.positionToValue(screenStart));
+        if(rangeValue == 1){
+          onMovieStop();
+          //range3.set("value", xAxis.positionToValue(0.5));
+          console.log(xAxis.positionToValue(screenStart));
 
-          }
+        }
           
 
-          if (progressPercentage < 1 && animationActive) {
-            requestAnimationFrame(animateRangeExpansion);
+        if (progressPercentage < 1 && animationActive) {
+          requestAnimationFrame(animateRangeExpansion);
         }
-        }
+      }
 
-        onZDataChange(scrollValue / 100, y, z, long); //再生速度、start、end、動画の長さ
+      onZDataChange(scrollValue / 100, y, z, long); //再生速度、start、end、動画の長さ
 
-        // アニメーション(スクロールバー)を開始
-        requestAnimationFrame(animateRangeExpansion);
+      // アニメーション(スクロールバー)を開始
+      requestAnimationFrame(animateRangeExpansion);
     }
 
     //最初から再生
     function handleButtonClick() {
-
 
       y = 0;
       z = 729.28125;
@@ -545,7 +614,6 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
     //部分再生
     function handleButtonClick1() {
 
-
       y = resizeButton.x(); 
       z = resizeButton2.x();
 
@@ -561,13 +629,15 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
     //一時停止
     function handleButtonClick2() {
 
-      if(resizeButton.isAnimation){
-        resizeButton.isAnimation = false;//状態の切り替え
+      if(resizeButton.isAnimation && animationActive){//一時停止
+        //button.innerText = '再開';
+        resizeButton.isAnimation = false;//状態の切り替え(この関数のみ)
         animationActive = false; //カウントを終了するためのフラグ
         onMovieStop();
       }
-      else{
+      else{//再生
         resizeButton.isAnimation = true;
+        //button.innerText = '一時停止';
 
         y = start * 729.28125;
         z = end * 729.28125;
@@ -582,7 +652,7 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
 
 
     // タイムスクロールバーを移動させるための関数
-    resizeButton2.events.on("dragged", function () {
+    resizeButton2.events.on("dragged", function () { //右のバー
 
       //初期位置を設定
       resizeButton.isFirstRun = true;
@@ -609,6 +679,37 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
       seriesRangeDataItem2.set("endValue", xAxis.getPrivate("min"));
 
     });
+
+
+    // タイムスクロールバーを移動させるための関数 
+    resizeButton3.events.on("dragged", function () { //真ん中のバー
+
+      //初期位置を設定
+      resizeButton.isMiddleRun = true;
+
+      //グラフのx座標
+      const z = resizeButton3.x(); 
+      
+      //[0~1]の座標
+      const position = xAxis.toAxisPosition(z / chart.plotContainer.width());
+
+      //[1696345200000~1700665200000]の座標
+      const newValue = xAxis.positionToValue(position);
+      //console.log(newValue)
+      //バーの位置を変える
+      range3.set("value", newValue);
+
+      setZ_second(long * z / 729.28125);
+
+      onSDataChange(z, long);
+
+      //onYDataChange(y, long);
+
+      //end
+      seriesRangeDataItem3.set("value", newValue);
+      seriesRangeDataItem3.set("endValue", xAxis.getPrivate("min"));
+
+    });
   
 
     // タイムスクロールバーを動かすマークを表示
@@ -619,6 +720,11 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onM
     // タイムスクロールバーを動かすマークを表示
     range2.set("bullet", am5xy.AxisBullet.new(root, {
       sprite: resizeButton2
+    }));
+
+    // タイムスクロールバーを動かすマークを表示
+    range3.set("bullet", am5xy.AxisBullet.new(root, {
+      sprite: resizeButton3
     }));
 
    

@@ -29,25 +29,26 @@ const App = () => {
   const [stopTime, setStopTime] = useState(0);
   const [x_second, setX_second] = useState(0);
   const [y_second, setY_second] = useState(0);
+  const [s_second, setS_second] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const num = Math.floor((myArray0.length) *  x_second / videoDuration);
+  const num = Math.floor((myArray0.length) *  s_second / videoDuration);
   const convertedNum = parseFloat(myArray0[num]); // 指数表記の数値を通常の数値に変換
   const roundedNum = convertedNum.toFixed(3); // 3桁で四捨五入
 
-  const num1 = Math.floor((myArray1.length) *  x_second / videoDuration);
+  const num1 = Math.floor((myArray1.length) *  s_second / videoDuration);
   const convertedNum1 = parseFloat(myArray1[num1]); // 指数表記の数値を通常の数値に変換
   const roundedNum1 = convertedNum1.toFixed(3); // 3桁で四捨五入
 
-  const num2 = Math.floor((myArray2.length) *  x_second / videoDuration);
+  const num2 = Math.floor((myArray2.length) *  s_second / videoDuration);
   const convertedNum2 = parseFloat(myArray2[num2]); // 指数表記の数値を通常の数値に変換
   const roundedNum2 = convertedNum2.toFixed(3); // 3桁で四捨五入
 
-  const num3 = Math.floor((myArray3.length) *  x_second / videoDuration);
+  const num3 = Math.floor((myArray3.length) *  s_second / videoDuration);
   const convertedNum3 = parseFloat(myArray3[num3]); // 指数表記の数値を通常の数値に変換
   const roundedNum3 = convertedNum3.toFixed(3); // 3桁で四捨五入
 
-  const num4 = Math.floor((myArray4.length) *  x_second / videoDuration);
+  const num4 = Math.floor((myArray4.length) *  s_second / videoDuration);
   const convertedNum4 = parseFloat(myArray4[num4]); // 指数表記の数値を通常の数値に変換
   const roundedNum4 = convertedNum4.toFixed(3); // 3桁で四捨五入
 
@@ -60,17 +61,21 @@ const App = () => {
  
   };
 
-  const handleXDataChange = (newValue, long) => {
+  const handleXDataChange = (newValue, long) => { //左のバー
     playerRef.current.seekTo(long * newValue / 729.28125, 'seconds');//最大座標(729.28125)
     setX_second(long * newValue / 729.28125)
     
   };
 
-  const handleYDataChange = (newValue, long) => {   
+  const handleYDataChange = (newValue, long) => { //右のバー
     setY_second(long * newValue / 729.28125)
 
   };
 
+  const handleSDataChange = (newValue, long) => { //真ん中のバー
+    setS_second(long * newValue / 729.28125)
+
+  }
 
   const handleCDataChange = (newValue, long) => {//最初から再生  
 
@@ -212,6 +217,7 @@ const App = () => {
         onYDataChange={handleYDataChange}
         onCDataChange={handleCDataChange}
         onZDataChange={handleZDataChange}
+        onSDataChange={handleSDataChange}
         onMovieStop = {onMovieStop}
         
         //scrollValue={scrollValue} // 再生位置

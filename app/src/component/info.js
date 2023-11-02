@@ -92,7 +92,8 @@ const Chart = () => {
 
     series.fills.template.setAll({
       fillOpacity: 0.2,
-      visible: true
+      visible: true,
+      
     });
 
     
@@ -115,19 +116,13 @@ const Chart = () => {
     const seriesRange = series.createAxisRange(seriesRangeDataItem);
     seriesRange.fills.template.setAll({
       visible: true,
-      opacity: 0.3
+      opacity: 0.3,
+      fill: am5.color(0xff0000) // 赤色に塗りつぶすための設定
     });
 
-    seriesRange.fills.template.set("fillPattern", am5.LinePattern.new(root, {
-      color: am5.color(0xff0000),
-      rotation: 45,
-      strokeWidth: 2,
-      width: 2000,
-      height: 2000,
-      fill: am5.color(0xffffff)
-    }));
+    
 
-    seriesRange.strokes.template.set("stroke", am5.color(0xff0000));
+   
 
     xAxis.onPrivate("max", function (value) {
       seriesRangeDataItem.set("endValue", value);
