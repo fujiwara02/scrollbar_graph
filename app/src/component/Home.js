@@ -62,7 +62,6 @@ const App = () => {
   };
 
   const handleXDataChange = (newValue, long) => { //左のバー
-    playerRef.current.seekTo(long * newValue / 729.28125, 'seconds');//最大座標(729.28125)
     setX_second(long * newValue / 729.28125)
     
   };
@@ -74,6 +73,7 @@ const App = () => {
 
   const handleSDataChange = (newValue, long) => { //真ん中のバー
     setS_second(long * newValue / 729.28125)
+    playerRef.current.seekTo(long * newValue / 729.28125, 'seconds');//バーと動画を対応させている
 
   }
 

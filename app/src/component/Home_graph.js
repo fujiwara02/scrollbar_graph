@@ -30,7 +30,6 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onS
     let y = 0;
     let z = 0;
     let start1 = 0; //アニメーション時にstartを保存
-    let screenStart = 0; //一時停止時にリセットされない
 
     videoElement.onloadedmetadata = () => {
       console.log('動画の秒数:', videoElement.duration);
@@ -556,6 +555,7 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onS
       resizeButton.isMiddleRun = true;
 
       animationActive = true; // アニメーションを制御するフラグ
+      resizeButton.isAnimation = true;//一時停止を再生状態に変える
 
       let rangeValue = 0;
       let animationStart; 
@@ -571,6 +571,7 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onS
         const progressPercentage = Math.min(progress / animationDuration, 1);
 
         rangeValue = Math.min(progressPercentage, 1);
+        console.log(rangeValue);
         
         const newValue = xAxis.positionToValue( y / 729.28125 + rangeValue * (z - y) / 729.28125);//加算(start位置)、掛け算(長さ)
         range3.set("value", newValue);
@@ -579,8 +580,7 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onS
 
         if(rangeValue == 1){
           onMovieStop();
-          //range3.set("value", xAxis.positionToValue(0.5));
-          console.log(xAxis.positionToValue(screenStart));
+          animationActive = false;
 
         }
           
@@ -599,30 +599,32 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onS
     //最初から再生
     function handleButtonClick() {
 
-      y = 0;
-      z = 729.28125;
+      if(!animationActive){
+        y = 0;
+        z = 729.28125;
 
-      start = 0;
-      end = 1;
-      start1 = start; //アニメーション
-      screenStart = start; //固定
+        start = 0;
+        end = 1;
+        start1 = start; //アニメーション
       
-      handleButtonClick4();
+        handleButtonClick4();
+      }
       
     }
 
     //部分再生
     function handleButtonClick1() {
-
+    
+      if(!animationActive){
       y = resizeButton.x(); 
       z = resizeButton2.x();
 
       start = y / 729.28125
       end = z / 729.28125;
       start1 = start; //アニメーション
-      screenStart = start; //固定
 
       handleButtonClick4();   
+      }
     }
     
 
@@ -634,9 +636,9 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onS
         resizeButton.isAnimation = false;//状態の切り替え(この関数のみ)
         animationActive = false; //カウントを終了するためのフラグ
         onMovieStop();
+        console.log("clear");
       }
-      else{//再生
-        resizeButton.isAnimation = true;
+      else if(!resizeButton.isAnimation && !animationActive){//再生
         //button.innerText = '一時停止';
 
         y = start * 729.28125;
@@ -644,6 +646,11 @@ const Chart = ({ onXDataChange, onYDataChange, onCDataChange, onZDataChange, onS
         start1 = start;
 
         handleButtonClick4();
+        console.log("clear1");
+
+      }
+      else{
+        console.log("clear2");
 
       }
     }
